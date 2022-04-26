@@ -4,6 +4,7 @@ from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtGui import *
 #importing QtCore to use Qurl
 from PyQt5.QtCore import *
+from URLFunctions.parseURL import parseURL
 
 class Window (QMainWindow):
     def __init__(self):
@@ -55,6 +56,10 @@ class Window (QMainWindow):
         homeBtn.triggered.connect(self.loadHomepage)
         navbar.addAction(homeBtn)
 
+        #*------------search bar------------------------
+        self.searchBar = QLineEdit()
+        self.searchBar.returnPressed.connect(self.searchOnline)
+
         self.showMaximized()
     
     def loadHomepage(self):
@@ -65,6 +70,16 @@ class Window (QMainWindow):
             print(filename)
             html = f.read()
             self.browser.setHtml(html)
+    
+    # UserInput will be given if sent through homepage search bar
+    def searchOnline(self, userInput=""):
+        url = ""
+        if userInput == "" or userInput == " ":
+            url = self.searchBar.text()
+            self.browser.setUrl()
+        else:
+            url = QUrl(parseURL(userInput=""))
+            self.browser.setUrl(url)
 
 MyApp = QApplication(sys.argv)
 QApplication.setApplicationName('Crêpe Browser')
