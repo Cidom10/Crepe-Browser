@@ -4,7 +4,7 @@ from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtGui import *
 #importing QtCore to use Qurl
 from PyQt5.QtCore import *
-from Browser.webEngine import WebEngine
+from Browser.toolbar import Navbar
 
 class Window (QMainWindow):
     def __init__(self):
@@ -25,6 +25,44 @@ class Window (QMainWindow):
         # Used to apply the layout to the whole main window
         self.setCentralWidget(self.browser)
 
+        icons = [
+          'SP_ArrowBack',
+          'SP_ArrowForward',
+          'SP_BrowserReload',
+          'SP_TitleBarUnshadeButton'
+        ]
+
+        navbar = QToolBar()
+        self.addToolBar(navbar)
+
+        #*-----------------prev Button-----------------
+        # prevBtn = QAction('Prev',self)
+        prevBtn = QAction("", self)
+        prevBtn.setIcon(self.style().standardIcon(getattr(QStyle, icons[0])))
+        #when triggered set connection
+        prevBtn.triggered.connect(self.browser.back)
+        navbar.addAction(prevBtn)
+
+        #*-----------------next Button---------------
+        nextBtn = QAction("", self)
+        nextBtn.setIcon(self.style().standardIcon(getattr(QStyle, icons[1])))
+        #when triggered set connection
+        nextBtn.triggered.connect(self.browser.forward)
+        navbar.addAction(nextBtn)
+
+        #*-----------refresh Button--------------------
+        refreshBtn = QAction("", self)
+        refreshBtn.setIcon(self.style().standardIcon(getattr(QStyle, icons[2])))
+        
+        #when triggered set connection
+        refreshBtn.triggered.connect(self.browser.reload)
+        navbar.addAction(refreshBtn)
+
+        #*-----------home button----------------------
+        homeBtn = QAction('Home',self)
+        #when triggered call home method
+        homeBtn.triggered.connect(self.loadHomepage)
+        navbar.addAction(homeBtn)
 
         self.showMaximized()
     
