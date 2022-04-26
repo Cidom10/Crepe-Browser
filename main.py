@@ -4,7 +4,6 @@ from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtGui import *
 #importing QtCore to use Qurl
 from PyQt5.QtCore import *
-from Browser.toolbar import Navbar
 
 class Window (QMainWindow):
     def __init__(self):
@@ -17,26 +16,18 @@ class Window (QMainWindow):
           'SP_TitleBarUnshadeButton'
         ]
 
-        # Layout will include Toolbar and Browser widget
+        # Layout of QMainWindow will include Toolbar and central widget
 
         self.browser = QWebEngineView()
+        # Opens up to homepage off of start
         self.loadHomepage()
 
-        # Used to apply the layout to the whole main window
         self.setCentralWidget(self.browser)
-
-        icons = [
-          'SP_ArrowBack',
-          'SP_ArrowForward',
-          'SP_BrowserReload',
-          'SP_TitleBarUnshadeButton'
-        ]
 
         navbar = QToolBar()
         self.addToolBar(navbar)
 
         #*-----------------prev Button-----------------
-        # prevBtn = QAction('Prev',self)
         prevBtn = QAction("", self)
         prevBtn.setIcon(self.style().standardIcon(getattr(QStyle, icons[0])))
         #when triggered set connection
@@ -58,7 +49,7 @@ class Window (QMainWindow):
         refreshBtn.triggered.connect(self.browser.reload)
         navbar.addAction(refreshBtn)
 
-        #*-----------home button----------------------
+        #*-----------home button----------------------  
         homeBtn = QAction('Home',self)
         #when triggered call home method
         homeBtn.triggered.connect(self.loadHomepage)
@@ -67,13 +58,13 @@ class Window (QMainWindow):
         self.showMaximized()
     
     def loadHomepage(self):
+        # Gets html file from "homepage" folder and serves it to the QWebEngineView
         parent = os.path.abspath(os.path.join(".", os.pardir))
         filename = os.path.join(parent, "Crepe-Browser\homepage\index.html")
         with open(filename, "r") as f:
             print(filename)
             html = f.read()
             self.browser.setHtml(html)
-            print("what???")
 
 MyApp = QApplication(sys.argv)
 QApplication.setApplicationName('Crêpe Browser')
