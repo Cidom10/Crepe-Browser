@@ -1,5 +1,6 @@
 # Does the creation of a url that looks like
 # https://google.com/Hi%20There%p=""
+<<<<<<< HEAD
 import requests
 
 
@@ -15,3 +16,11 @@ def createurl(userinput):
 
 t1 = createurl(userinputtest)
 print(t1)
+=======
+from PyQt5.QtCore import *
+
+def parseURL(userInput):
+    print("This would be a url, " + userInput)
+
+    return userInput
+>>>>>>> 3ecf938721900848e720385d27bf69810c95bae4

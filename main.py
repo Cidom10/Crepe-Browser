@@ -4,7 +4,6 @@ from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtGui import *
 #importing QtCore to use Qurl
 from PyQt5.QtCore import *
-from Browser.webEngine import WebEngine
 
 class Window (QMainWindow):
     def __init__(self):
@@ -17,25 +16,69 @@ class Window (QMainWindow):
           'SP_TitleBarUnshadeButton'
         ]
 
-        # Layout will include Toolbar and Browser widget
+        # Layout of QMainWindow will include Toolbar and central widget
 
         self.browser = QWebEngineView()
+        # Opens up to homepage off of start
         self.loadHomepage()
 
-        # Used to apply the layout to the whole main window
         self.setCentralWidget(self.browser)
 
+        navbar = QToolBar()
+        self.addToolBar(navbar)
+
+        #*-----------------prev Button-----------------
+        prevBtn = QAction("", self)
+        prevBtn.setIcon(self.style().standardIcon(getattr(QStyle, icons[0])))
+        #when triggered set connection
+        prevBtn.triggered.connect(self.browser.back)
+        navbar.addAction(prevBtn)
+
+        #*-----------------next Button---------------
+        nextBtn = QAction("", self)
+        nextBtn.setIcon(self.style().standardIcon(getattr(QStyle, icons[1])))
+        #when triggered set connection
+        nextBtn.triggered.connect(self.browser.forward)
+        navbar.addAction(nextBtn)
+
+        #*-----------refresh Button--------------------
+        refreshBtn = QAction("", self)
+        refreshBtn.setIcon(self.style().standardIcon(getattr(QStyle, icons[2])))
+        
+        #when triggered set connection
+        refreshBtn.triggered.connect(self.browser.reload)
+        navbar.addAction(refreshBtn)
+
+        #*-----------home button----------------------  
+        homeBtn = QAction('Home',self)
+        #when triggered call home method
+        homeBtn.triggered.connect(self.loadHomepage)
+        navbar.addAction(homeBtn)
+
+        #*------------search bar------------------------
+        self.searchBar = QLineEdit()
+        self.searchBar.returnPressed.connect(self.searchOnline)
 
         self.showMaximized()
     
     def loadHomepage(self):
+        # Gets html file from "homepage" folder and serves it to the QWebEngineView
         parent = os.path.abspath(os.path.join(".", os.pardir))
         filename = os.path.join(parent, "Crepe-Browser\homepage\index.html")
         with open(filename, "r") as f:
             print(filename)
             html = f.read()
             self.browser.setHtml(html)
-            print("what???")
+    
+    # UserInput will be given if sent through homepage search bar
+    def searchOnline(self, userInput=""):
+        url = ""
+        if userInput == "" or userInput == " ":
+            url = self.searchBar.text()
+            self.browser.setUrl()
+        else:
+            url = QUrl(parseURL(userInput=""))
+            self.browser.setUrl(url)
 
 MyApp = QApplication(sys.argv)
 QApplication.setApplicationName('Crêpe Browser')
