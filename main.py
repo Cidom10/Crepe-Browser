@@ -4,7 +4,7 @@ from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtGui import *
 #importing QtCore to use Qurl
 from PyQt5.QtCore import *
-from Browser.webEngine import WebEngine
+
 
 class Window (QMainWindow):
     def __init__(self):
