@@ -2,9 +2,6 @@
 # https://google.com/Hi%20There%p=""
 import requests
 
-
-userinputtest = 'spiders bugs'
-
 #console.log("hi")
 def parseURL(userinput):
     search = 'https://www.google.com/search'
