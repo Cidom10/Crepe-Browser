@@ -4,6 +4,7 @@ from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtGui import *
 #importing QtCore to use Qurl
 from PyQt5.QtCore import *
+from URLFunctions.parseURL import parseURL
 
 class Window (QMainWindow):
     def __init__(self):
@@ -56,8 +57,11 @@ class Window (QMainWindow):
         navbar.addAction(homeBtn)
 
         #*------------search bar------------------------
-        self.searchBar = QLineEdit()
-        self.searchBar.returnPressed.connect(self.searchOnline)
+        searchBar = QLineEdit()
+        searchBar.returnPressed.connect(self.searchOnline)
+        searchBar.setFixedWidth(1000)
+        navbar.addWidget(searchBar)
+
 
         self.showMaximized()
     
