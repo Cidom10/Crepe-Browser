@@ -54,8 +54,8 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
             grid-column: 4 / 4;
             grid-row: 1 / 1;
         }
-        .weather {
-            background-color: blue;
+        #weather {
+            border: 1px solid black;
             grid-column: 2 / 5;
             grid-row: 2 / 2;
         }
@@ -69,7 +69,28 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
         <div class="topColumn" id="one"></div>
         <div class="topColumn" id="two"></div>
         <div class="topColumn" id="three"></div>
-        <div class="weather"></div>
+        <div id="weather"></div>
     </div>
 </body>
+<script>
+    async function getWeather(city="Ruston") {
+        let lat = "32.5232";
+        let lon = "92.6379";
+        let base = "http://api.openweathermap.org/data/2.5/weather?";
+        let apiKey = "cc3ca6e8f50f6bb50affe9e6b14dcbc0";
+        url = `${base}lat=${lat}&lon=${lon}&appId=${apiKey}`;
+        let response = await fetch(url)
+        return response.json()
+    }
+    let weatherData = getWeather().then(data => {
+        console.log(data)
+        let a = document.getElementById("weather");
+        a.innerHTML += `
+        <div style="font-size:35px;">
+            Description: ${data.weather[0].main}
+            
+
+        </div>`
+    })
+</script>
 </html>
