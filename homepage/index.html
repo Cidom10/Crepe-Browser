@@ -33,31 +33,23 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
             width: 100%;
             height: 100%;
             font-size: 90px;
-            display: grid;
-            grid-template-columns: 1fr repeat(3, 2fr) 1fr;
-            grid-template-rows: 1.5fr 1fr;
-            column-gap: 20px;
-            row-gap: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .topColumn {
-            background-color: black;
+            display: flex;
         }
-        #one {
-            grid-column: 2 / 2;
-            grid-row: 1 / 1;
-        }
-        #two {
-            grid-column: 3 / 3;
-            grid-row: 1 / 1;
-        }
-        #three {
-            grid-column: 4 / 4;
-            grid-row: 1 / 1;
-        }
-        #weather {
+
+        .homeWidget {
+            width: 15%;
+            height: 60%;
             border: 1px solid black;
-            grid-column: 2 / 5;
-            grid-row: 2 / 2;
+            margin-left: 10%;
+        }
+        .homeWidget:first-child {
+            margin-left: 0;
         }
         
 
@@ -66,10 +58,12 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
 </head>
 <body>
     <div class="wrap">
-        <div class="topColumn" id="one"></div>
-        <div class="topColumn" id="two"></div>
-        <div class="topColumn" id="three"></div>
-        <div id="weather"></div>
+        <div class="topColumn">
+            <div class="homeWidget"></div>
+            <div class="homeWidget"></div>
+            <div class="homeWidget"></div>
+        </div>
+        <div class="homeWidget" id="weather"></div>
     </div>
 </body>
 <script>
@@ -87,10 +81,16 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
         let a = document.getElementById("weather");
         a.innerHTML += `
         <div style="font-size:35px;">
-            Description: ${data.weather[0].main}
+            Description: ${data.weather[0].description}
             
 
         </div>`
-    })
+    });
+    
+    let a = fetch("todos.csv")
+        .then(res => res.text())
+        .then(text => {
+            console.log(text)
+        })
 </script>
 </html>
