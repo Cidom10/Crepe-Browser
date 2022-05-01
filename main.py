@@ -5,7 +5,6 @@ from PyQt5.QtGui import *
 #importing QtCore to use Qurl
 from PyQt5.QtCore import *
 from URLFunctions.parseURL import parseURL
-import features.functions as funcs
 
 class Window (QMainWindow):
     def __init__(self):
@@ -67,14 +66,14 @@ class Window (QMainWindow):
 
         menu = QMenu()
 
-        theme = QAction("Switch theme", self)
-        theme.triggered.connect(funcs.changeTheme)
-        menu.addAction(theme)
+        # theme = QAction("Switch theme", self)
+        # theme.triggered.connect(funcs.changeTheme)
+        # menu.addAction(theme)
 
-        openBookmarks = QAction("Open bookmarks", self)
-        openBookmarks.triggered.connect(funcs.openBookmarks)
-        openBookmarks.setShortcut("Ctrl+B")
-        menu.addAction(openBookmarks)
+        # openBookmarks = QAction("Open bookmarks", self)
+        # openBookmarks.triggered.connect(funcs.openBookmarks)
+        # openBookmarks.setShortcut("Ctrl+B")
+        # menu.addAction(openBookmarks)
 
         # Button for menu
         self.optionsMenu = QToolButton(self)
@@ -87,12 +86,7 @@ class Window (QMainWindow):
     
     def loadHomepage(self):
         # Gets html file from "homepage" folder and serves it to the QWebEngineView
-        parent = os.path.abspath(os.path.join(".", os.pardir))
-        filename = os.path.join(parent, "Crepe-Browser\homepage\index.html")
-        with open(filename, "r") as f:
-            print(filename)
-            html = f.read()
-            self.browser.setHtml(html)
+        self.browser.load("http://localhost:5000/")
     
     # UserInput will be given if sent through homepage search bar
     def searchOnline(self, userInput=""):
