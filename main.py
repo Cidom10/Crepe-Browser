@@ -57,10 +57,10 @@ class Window (QMainWindow):
         navbar.addAction(homeBtn)
 
         #*------------search bar------------------------
-        searchBar = QLineEdit()
-        searchBar.returnPressed.connect(self.searchOnline)
-        searchBar.setFixedWidth(1000)
-        navbar.addWidget(searchBar)
+        self.searchBar = QLineEdit()
+        self.searchBar.returnPressed.connect(self.searchOnline)
+        self.searchBar.setFixedWidth(1000)
+        navbar.addWidget(self.searchBar)
 
         self.showMaximized()
 
@@ -86,16 +86,16 @@ class Window (QMainWindow):
     
     def loadHomepage(self):
         # Gets html file from "homepage" folder and serves it to the QWebEngineView
-        self.browser.load("http://localhost:5000/")
+        url = QUrl('http://localhost:5000/')
+        self.browser.setUrl(url)
     
     # UserInput will be given if sent through homepage search bar
-    def searchOnline(self, userInput=""):
-        url = ""
+    def searchOnline(self,):
+        userInput = self.searchBar.text()
         if userInput == "" or userInput == " ":
-            url = self.searchBar.text()
-            self.browser.setUrl()
+            self.loadHomepage()
         else:
-            url = QUrl(parseURL(userInput=""))
+            url = QUrl(parseURL(self.searchBar.text()))
             self.browser.setUrl(url)
 
 MyApp = QApplication(sys.argv)
