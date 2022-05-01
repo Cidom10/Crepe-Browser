@@ -57,7 +57,7 @@ class Window (QMainWindow):
         navbar.addAction(homeBtn)
 
         #*------------search bar------------------------
-        self.searchBar = QLineEdit()
+        self.searchBar = QLineEdit(self)
         self.searchBar.returnPressed.connect(self.searchOnline)
         self.searchBar.setFixedWidth(1000)
         navbar.addWidget(self.searchBar)
@@ -90,13 +90,16 @@ class Window (QMainWindow):
         self.browser.setUrl(url)
     
     # UserInput will be given if sent through homepage search bar
-    def searchOnline(self,):
+    def searchOnline(self):
         userInput = self.searchBar.text()
         if userInput == "" or userInput == " ":
             self.loadHomepage()
+            self.searchBar.setText("")
         else:
             url = QUrl(parseURL(self.searchBar.text()))
             self.browser.setUrl(url)
+            self.searchBar.setText(url.toString())
+            print(self.browser.history)
 
 MyApp = QApplication(sys.argv)
 QApplication.setApplicationName('Crêpe Browser')
