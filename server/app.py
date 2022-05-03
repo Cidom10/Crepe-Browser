@@ -5,35 +5,32 @@ import json
 
 app = Flask(__name__)
 
-weatherData = getWeather()
-desc = weatherData["data"][0]["weather"]["description"]
-temp = weatherData['data'][0]["temp"]
-dewPt = weatherData["data"][0]["dewpt"]
-precip = weatherData["data"][0]["precip"]
-sunrise = weatherData["data"][0]["sunrise"]
-sunset = weatherData["data"][0]["sunset"]
+# weatherData = getWeather()
+# desc = weatherData["data"][0]["weather"]["description"]
+# temp = weatherData['data'][0]["temp"]
+# dewPt = weatherData["data"][0]["dewpt"]
+# precip = weatherData["data"][0]["precip"]
+# sunrise = weatherData["data"][0]["sunrise"]
+# sunset = weatherData["data"][0]["sunset"]
 
-with open('todos.json', 'r') as myfile:
-    data=myfile.read()
-# parse file
-todoObj = json.loads(data)
+todos = [ "Check moodle", "Win the Expo", "Something" ]
 
 @app.route('/')
 def hello():
-    todoList = requests.get("http://localhost:5000/todo/getall").json()
-    print(todoList)
     return render_template("index.html", 
-        len=len(todoList), todos=todoList, 
-        desc=desc, temp=temp, dewPt = dewPt, precip=precip, sunrise=sunrise, sunset=sunset
+        len=len(todos), todos=todos, 
+        # desc=desc, temp=temp, dewPt = dewPt, precip=precip, sunrise=sunrise, sunset=sunset
     )
 
 @app.route('/todo/getall',methods=['GET'])
 def getTasks():
-    return jsonify(todoObj)
+    return jsonify(todos)
 
 @app.route('/todo/create',methods=['POST'])
 def createTask():
-    return 'Create new task'
+    if request.method == "POST":
+        todos.append(request.form.get("task"))
+    return redirect(url_for("hello"))
 
 @app.route('/todo/update',methods=['UPDATE'])
 def updateTask():

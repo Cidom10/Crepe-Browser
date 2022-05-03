@@ -15,6 +15,7 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='index.css')}}">
     <style>
         html, body {
             margin:0;
@@ -28,32 +29,37 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
             box-sizing: border-box;
         }
         .wrap {
-            padding-top: 30px;
             width: 100%;
             height: 100%;
             display: grid;
-            grid-template-columns: 1fr 4fr 4fr 1fr;
-            grid-template-rows: 2fr 1fr 6fr;
+            grid-template-columns: 2fr 4fr 4fr 2fr;
+            grid-template-rows: 2fr 1fr 6fr 0.3fr;
             column-gap: 10px;
+            padding-bottom: 30px;
+            background-image: url("{{url_for('static',filename='background.svg')}}");
         }
-        .wrap > * { border: 1px solid black;}
 
-        .logo {
+        #logoImg {
+            border: none;
             grid-column-start: 2;
             grid-column-end: 4;
             grid-row-start: 1;
-            width: 50%;
             margin-left: auto;
             margin-right: auto;
-            height: 50px;
+            width: 25%;
+            height: 85%;
         }
         .searchbar {
+            border: 1px solid black;
+            border-radius: 10px 0 10px 0;
             grid-column-start: 2;
             grid-column-end: 4;
             grid-row-start: 2;
             width: 60%;
             margin: 0 auto 0 auto;
             height: 30px;
+            background-color: #404040; 
+            color: #cacaca;
         }
         #bookmarksList {
             grid-column-start: 2;
@@ -81,40 +87,30 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
         }
     </style>
     <title>Home</title>
+    <script>
+        
+    </script>
 </head>
 <body>
     <div class="wrap">
-        <div class="logo">
-            <!-- <img src="{{url_for('static',filename='logo.png')}}" alt="Crepe Browser"> -->
-        </div>
+        <img id="logoImg" src="{{url_for('static',filename='logo.png')}}" alt="Crepe Browser"/>
         <div class="searchbar"></div>
         <div class="homeWidget" id="bookmarksList">
             <h1></h1>Notes
 
-            <form action="/add" method="post">
-                <div>
-                    <label>Todo Title</label>
-                    <input type="text" name="title" placeholder="Enter Todo...">
+            <ul>
+                {% for todo in todos %}
+                <li>{{todo}}</li>
+                {% endfor %}
+            </ul>
+
+            <form action="/todo/create" class="taskForm"  method="post">
+                <div class="uhh">
+                    <input type="text" name="task" placeholder="Enter Todo...">
                     <br>
                     <button type="submit">Add</button>
                 </div>
             </form>
-
-            <hr/>
-
-            {% for todo in todo_list %}
-        
-            <p>{{todo.id }} | {{ todo.title }}</p>
-        
-            {% if todo.complete == False %}
-            <span>Not Complete</span>
-            {% else %}
-            <span>Completed</span>
-            {% endif %}
-            
-            <a href="/update/{{ todo.id }}">Update</a>
-            <a href="/delete/{{ todo.id }}">Delete</a>
-            {% endfor %}
         </div>
         <div class="homeWidget" id="weather">
             <h3>Ruston, LA</h3>
