@@ -5,6 +5,7 @@ import json
 
 app = Flask(__name__)
 
+'''
 weatherData = getWeather()
 desc = weatherData["data"][0]["weather"]["description"]
 temp = weatherData['data'][0]["temp"]
@@ -12,6 +13,7 @@ dewPt = weatherData["data"][0]["dewpt"]
 precip = weatherData["data"][0]["precip"]
 sunrise = weatherData["data"][0]["sunrise"]
 sunset = weatherData["data"][0]["sunset"]
+'''
 
 with open('todos.json', 'r') as myfile:
     data=myfile.read()
@@ -24,7 +26,7 @@ def hello():
     print(todoList)
     return render_template("index.html", 
         len=len(todoList), todos=todoList, 
-        desc=desc, temp=temp, dewPt = dewPt, precip=precip, sunrise=sunrise, sunset=sunset
+        desc="desc", temp="temp", dewPt = "dewPt", precip="precip", sunrise="sunrise", sunset="sunset"
     )
 
 @app.route('/todo/getall',methods=['GET'])
@@ -45,7 +47,7 @@ def deleteTask():
 
 @app.route("/weather")
 def weather():
-    return weatherData
+    return "weatherData"
 
 if __name__ == '__main__':
     app.run(debug=True)

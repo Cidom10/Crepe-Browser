@@ -1,16 +1,20 @@
+from os import getcwd
+import requests
+
 def getTodos():
     lines = []
-    with open("C:\\Users\\idomc\\OneDrive\\Desktop\\Crepe-Browser\\server\\functions\\todos.txt") as f:
+    pwd = getcwd()
+    with open(pwd + "/todos.txt") as f:
         lines = f.readlines()
     return lines
 
 def addTodo(todo):
-    with open("C:\\Users\\idomc\\OneDrive\\Desktop\\Crepe-Browser\\server\\functions\\todos.txt", "a") as f:
+    pwd = getcwd()
+    with open(pwd +"/todos.txt", "a") as f: 
         f.write(todo)
         f.write('\n')
     return "Added todo"
 
-import requests
 def getWeather():
     lat = "32.5232"
     lon = "-92.6379"
