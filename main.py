@@ -9,7 +9,8 @@ from URLFunctions.parseURL import parseURL
 class Window (QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
-
+        self.settingsPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/iconsetting.png")
+        self.settingsIcon = QIcon(self.settingsPixmap)
         icons = [
           'SP_ArrowBack',
           'SP_ArrowForward',
@@ -78,7 +79,7 @@ class Window (QMainWindow):
 
         # Button for menu
         self.optionsMenu = QToolButton(self)
-        self.optionsMenu.setIcon(self.style().standardIcon(getattr(QStyle, icons[3])))
+        self.optionsMenu.setIcon(self.settingsIcon)
         self.optionsMenu.setMenu(menu)
         self.optionsMenu.setPopupMode(QToolButton.InstantPopup)
         self.optionsMenu.setStyleSheet("margin-left: 350px; margin-right: 10px; width: 50px")
