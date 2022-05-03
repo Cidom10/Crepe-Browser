@@ -89,6 +89,7 @@ class Window (QMainWindow):
         # Gets html file from "homepage" folder and serves it to the QWebEngineView
         url = QUrl('http://localhost:5000/')
         self.browser.setUrl(url)
+        self.browser.setZoomFactor(1.75)
     
     # UserInput will be given if sent through homepage search bar
     def searchOnline(self):
@@ -101,6 +102,9 @@ class Window (QMainWindow):
             self.browser.setUrl(url)
             self.searchBar.setText(url.toString())
             print(self.browser.history)
+            self.browser.setZoomFactor(4)
+
+
 
 MyApp = QApplication(sys.argv)
 QApplication.setApplicationName('Crêpe Browser')
