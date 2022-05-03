@@ -98,6 +98,7 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
         <div class="homeWidget" id="bookmarksList">
             <h1></h1>Notes
 
+<<<<<<< HEAD
             <ul>
                 {% for todo in todos %}
                 <li>{{todo}}</li>
@@ -107,6 +108,12 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
             <form action="/todo/create" class="taskForm"  method="post">
                 <div class="uhh">
                     <input type="text" name="task" placeholder="Enter Todo...">
+=======
+            <form action="/todo/create" method="post">
+                <div>
+                    <label>Todo Title</label>
+                    <input type="text" name="title" placeholder="Enter Todo...">
+>>>>>>> 9a770f0bf85e35c5974c73fcf7eb66c0663ac29b
                     <br>
                     <button type="submit">Add</button>
                 </div>

@@ -5,6 +5,7 @@ import json
 
 app = Flask(__name__)
 
+<<<<<<< HEAD
 # weatherData = getWeather()
 # desc = weatherData["data"][0]["weather"]["description"]
 # temp = weatherData['data'][0]["temp"]
@@ -12,14 +13,30 @@ app = Flask(__name__)
 # precip = weatherData["data"][0]["precip"]
 # sunrise = weatherData["data"][0]["sunrise"]
 # sunset = weatherData["data"][0]["sunset"]
+=======
+'''
+weatherData = getWeather()
+desc = weatherData["data"][0]["weather"]["description"]
+temp = weatherData['data'][0]["temp"]
+dewPt = weatherData["data"][0]["dewpt"]
+precip = weatherData["data"][0]["precip"]
+sunrise = weatherData["data"][0]["sunrise"]
+sunset = weatherData["data"][0]["sunset"]
+'''
+>>>>>>> 9a770f0bf85e35c5974c73fcf7eb66c0663ac29b
 
 todos = [ "Check moodle", "Win the Expo", "Something" ]
 
 @app.route('/')
 def hello():
     return render_template("index.html", 
+<<<<<<< HEAD
         len=len(todos), todos=todos, 
         # desc=desc, temp=temp, dewPt = dewPt, precip=precip, sunrise=sunrise, sunset=sunset
+=======
+        len=len(todoList), todos=todoList, 
+        desc="desc", temp="temp", dewPt = "dewPt", precip="precip", sunrise="sunrise", sunset="sunset"
+>>>>>>> 9a770f0bf85e35c5974c73fcf7eb66c0663ac29b
     )
 
 @app.route('/todo/getall',methods=['GET'])
@@ -42,7 +59,7 @@ def deleteTask():
 
 @app.route("/weather")
 def weather():
-    return weatherData
+    return "weatherData"
 
 if __name__ == '__main__':
     app.run(debug=True)

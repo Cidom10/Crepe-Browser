@@ -59,7 +59,8 @@ class Window (QMainWindow):
         #*------------search bar------------------------
         self.searchBar = QLineEdit(self)
         self.searchBar.returnPressed.connect(self.searchOnline)
-        self.searchBar.setFixedWidth(1000)
+        self.searchBar.setFixedWidth(1300)
+        self.searchBar.setStyleSheet("margin-left: 250px; margin-right: auto")
         navbar.addWidget(self.searchBar)
 
         self.showMaximized()
@@ -80,7 +81,7 @@ class Window (QMainWindow):
         self.optionsMenu.setIcon(self.style().standardIcon(getattr(QStyle, icons[3])))
         self.optionsMenu.setMenu(menu)
         self.optionsMenu.setPopupMode(QToolButton.InstantPopup)
-        self.optionsMenu.setStyleSheet("margin-left: 50px; margin-right: 30px; width: 50px")
+        self.optionsMenu.setStyleSheet("margin-left: 350px; margin-right: 10px; width: 50px")
 
         navbar.addWidget(self.optionsMenu)
     
