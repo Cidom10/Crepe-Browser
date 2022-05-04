@@ -61,7 +61,7 @@ class Window (QMainWindow):
         self.searchBar = QLineEdit(self)
         self.searchBar.returnPressed.connect(self.searchOnline)
         self.searchBar.setFixedWidth(1300)
-        self.searchBar.setStyleSheet("margin-left: 250px; margin-right: auto")
+        self.searchBar.setStyleSheet("margin-left: 250px; margin-right: auto; height: 30%;")
         navbar.addWidget(self.searchBar)
 
         self.showMaximized()

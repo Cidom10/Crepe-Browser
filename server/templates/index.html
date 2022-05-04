@@ -33,10 +33,11 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
             height: 100%;
             display: grid;
             grid-template-columns: 2fr 4fr 4fr 2fr;
-            grid-template-rows: 2fr 1fr 6fr 0.3fr;
+            grid-template-rows: 2fr 6fr;
             column-gap: 10px;
             padding-bottom: 10px;
             background-image: url("{{url_for('static',filename='background.svg')}}");
+            background-size: cover;
         }
 
         #logoImg {
@@ -57,6 +58,7 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
             grid-row-start: 2;
             width: 60%;
             margin: 0 auto 0 auto;
+            padding-left: 10px;
             height: 30px;
             background-color: #404040; 
             color: #cacaca;
@@ -64,7 +66,7 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
         #bookmarksList {
             grid-column-start: 2;
             grid-column-end: 3;
-            grid-row-start: 3;
+            grid-row-start: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -80,7 +82,7 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
         #weather {
             grid-column-start: 3;
             grid-column-end: 4;
-            grid-row-start: 3;
+            grid-row-start: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -94,7 +96,6 @@ div.weather   -> Div that holds the weather widget. Spans 3 columns
 <body>
     <div class="wrap">
         <img id="logoImg" src="{{url_for('static',filename='logo.png')}}" alt="Crepe Browser"/>
-        <div class="searchbar"></div>
         <div class="homeWidget" id="bookmarksList">
             <h1></h1>Notes
 
