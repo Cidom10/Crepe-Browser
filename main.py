@@ -29,7 +29,7 @@ class Window (QMainWindow):
         navbar.setStyleSheet("height: 45px; padding-left: 5px; color:#cacaca; background-color: #404040;")
 
         #*-----------------prev Button-----------------
-        self.prevPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/PreviousIcon.png")
+        self.prevPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/PreviousIconFinal.png")
         self.prevIcon = QIcon(self.prevPixmap)
         prevBtn = QAction("", self)
         prevBtn.setIcon(self.prevIcon)
@@ -38,7 +38,7 @@ class Window (QMainWindow):
         navbar.addAction(prevBtn)
 
         #*-----------------next Button---------------
-        self.nextPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/NextIcon.png")
+        self.nextPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/NextIconFinal.png")
         self.nextIcon = QIcon(self.nextPixmap)
         nextBtn = QAction("", self)
         nextBtn.setIcon(self.nextIcon)
@@ -47,15 +47,20 @@ class Window (QMainWindow):
         navbar.addAction(nextBtn)
 
         #*-----------refresh Button--------------------
+        self.refreshPix = QPixmap("C:/Users/logan/OneDrive/Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/RefreshIconFinal.png")
+        self.refreshicon = QIcon(self.refreshPix)
         refreshBtn = QAction("", self)
-        refreshBtn.setIcon(self.style().standardIcon(getattr(QStyle, icons[2])))
+        refreshBtn.setIcon(self.refreshicon)
         
         #when triggered set connection
         refreshBtn.triggered.connect(self.browser.reload)
         navbar.addAction(refreshBtn)
 
         #*-----------home button----------------------  
-        homeBtn = QAction('Home',self)
+        self.homePix = QPixmap("C:/Users/logan/OneDrive/Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/HomeIconFinal.png")
+        self.homeicon = QIcon(self.homePix)
+        homeBtn = QAction('',self)
+        homeBtn.setIcon(self.homeicon)
         #when triggered call home method
         homeBtn.triggered.connect(self.loadHomepage)
         navbar.addAction(homeBtn)
@@ -79,7 +84,7 @@ class Window (QMainWindow):
         # openBookmarks.triggered.connect(funcs.openBookmarks)
         # openBookmarks.setShortcut("Ctrl+B")
         # menu.addAction(openBookmarks)
-        self.settingsPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/iconsetting.png")
+        self.settingsPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/settingiconfinal.png")
         self.settingsIcon = QIcon(self.settingsPixmap)
         # Button for menu
         self.optionsMenu = QToolButton(self)
