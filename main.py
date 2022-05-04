@@ -9,8 +9,6 @@ from URLFunctions.parseURL import parseURL
 class Window (QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
-        self.settingsPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/iconsetting.png")
-        self.settingsIcon = QIcon(self.settingsPixmap)
         icons = [
           'SP_ArrowBack',
           'SP_ArrowForward',
@@ -30,15 +28,19 @@ class Window (QMainWindow):
         self.addToolBar(navbar)
 
         #*-----------------prev Button-----------------
+        self.prevPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/PreviousIcon.png")
+        self.prevIcon = QIcon(self.prevPixmap)
         prevBtn = QAction("", self)
-        prevBtn.setIcon(self.style().standardIcon(getattr(QStyle, icons[0])))
+        prevBtn.setIcon(self.prevIcon)
         #when triggered set connection
         prevBtn.triggered.connect(self.browser.back)
         navbar.addAction(prevBtn)
 
         #*-----------------next Button---------------
+        self.nextPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/NextIcon.png")
+        self.nextIcon = QIcon(self.nextPixmap)
         nextBtn = QAction("", self)
-        nextBtn.setIcon(self.style().standardIcon(getattr(QStyle, icons[1])))
+        nextBtn.setIcon(self.nextIcon)
         #when triggered set connection
         nextBtn.triggered.connect(self.browser.forward)
         navbar.addAction(nextBtn)
@@ -76,7 +78,8 @@ class Window (QMainWindow):
         # openBookmarks.triggered.connect(funcs.openBookmarks)
         # openBookmarks.setShortcut("Ctrl+B")
         # menu.addAction(openBookmarks)
-
+        self.settingsPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/iconsetting.png")
+        self.settingsIcon = QIcon(self.settingsPixmap)
         # Button for menu
         self.optionsMenu = QToolButton(self)
         self.optionsMenu.setIcon(self.settingsIcon)
