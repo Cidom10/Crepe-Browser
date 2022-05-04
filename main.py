@@ -26,6 +26,7 @@ class Window (QMainWindow):
 
         navbar = QToolBar()
         self.addToolBar(navbar)
+        navbar.setStyleSheet("height: 45px; padding-left: 5px; color:#cacaca; background-color: #404040;")
 
         #*-----------------prev Button-----------------
         self.prevPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/PreviousIcon.png")
@@ -63,7 +64,7 @@ class Window (QMainWindow):
         self.searchBar = QLineEdit(self)
         self.searchBar.returnPressed.connect(self.searchOnline)
         self.searchBar.setFixedWidth(1300)
-        self.searchBar.setStyleSheet("margin-left: 250px; margin-right: auto; height: 30%;")
+        self.searchBar.setStyleSheet("margin-left: 200px; font-size: 20px; margin-right: auto; height: 30%;")
         navbar.addWidget(self.searchBar)
 
         self.showMaximized()
@@ -85,7 +86,7 @@ class Window (QMainWindow):
         self.optionsMenu.setIcon(self.settingsIcon)
         self.optionsMenu.setMenu(menu)
         self.optionsMenu.setPopupMode(QToolButton.InstantPopup)
-        self.optionsMenu.setStyleSheet("margin-left: 350px; margin-right: 10px; width: 50px")
+        self.optionsMenu.setStyleSheet("margin-left: 250px; margin-right: 10px; width: 50px")
 
         navbar.addWidget(self.optionsMenu)
     
@@ -105,7 +106,6 @@ class Window (QMainWindow):
             url = QUrl(parseURL(self.searchBar.text()))
             self.browser.setUrl(url)
             self.searchBar.setText(url.toString())
-            print(self.browser.history)
             self.browser.setZoomFactor(4)
 
 
