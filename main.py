@@ -9,8 +9,6 @@ from URLFunctions.parseURL import parseURL
 class Window (QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
-        self.settingsPixmap = QPixmap(r"C:/Users/logan/OneDrive\Documents/Computer Sci/Pi Browser/Crepe-Browser/IconPics/iconsetting.png")
-        self.settingsIcon = QIcon(self.settingsPixmap)
         icons = [
           'SP_ArrowBack',
           'SP_ArrowForward',
